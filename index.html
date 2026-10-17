@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID Scanner — Extract to Excel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/5.0.4/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">ID scanner</p>
+  <h1>Extract ID data<br>straight to Excel</h1>
+  <p class="sub">Upload ID photos — one at a time, a whole batch at once, or a .zip full of scans. Each one is read on-device and every field on a UAE Emirates ID (name, ID number, date of birth, nationality, sex, issue and expiry dates, card number, occupation, employer, issuing place) lands in its own column, ready to download as one Excel file.</p>
+
+  <div class="stage" id="stage">
+    <input type="file" id="fileInput" accept="image/*,.pdf,.zip" multiple>
+    <div class="stage-empty" id="stageEmpty">
+      <span class="ic">SELECT FILES</span>
+      <p>Click to upload, or drag files here</p>
+      <p class="hint">Select images or PDFs (front + back), or a .zip of scans</p>
+      <div class="filetypes"><span>JPG</span><span>PNG</span><span>PDF</span><span>ZIP</span></div>
+    </div>
+  </div>
+
+  <div class="actions" id="actions" style="display:none;">
+    <button id="cancelBtn">Clear queue</button>
+  </div>
+
+  <div class="log-table-wrap">
+    <div class="log-head">
+      <h2>Scanned records</h2>
+      <span class="count" id="rowCount">0 records</span>
+    </div>
+    <div class="table-scroll">
+    <table>
+      <thead id="logHead"></thead>
+      <tbody id="logBody"></tbody>
+    </table>
+    </div>
+    <div class="export-bar">
+      <span class="count" id="exportHint">Add at least one record to export.</span>
+      <button class="primary" id="exportBtn" disabled>Download Excel file</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="parser.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

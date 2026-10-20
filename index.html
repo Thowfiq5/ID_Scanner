@@ -15,6 +15,32 @@
 <body>
 <div class="wrap">
 
+  <!-- ===== HOME ===== -->
+  <section id="view-home" class="view">
+    <p class="eyebrow">ID scanner</p>
+    <h1>Choose what you<br>want to scan</h1>
+    <p class="sub">Pick a document type. Everything is read on-device and every field lands in its own column, ready to download as one Excel file.</p>
+    <div class="choice-grid">
+      <a class="choice" href="#labour" id="btnLabour">
+        <span class="choice-tag">MOHRE</span>
+        <span class="choice-title">Labour Card</span>
+        <span class="choice-desc">Name, expiry date, work permit no., personal no., profession, nationality, establishment</span>
+        <span class="choice-go">Open scanner &rarr;</span>
+      </a>
+      <a class="choice" href="#eid" id="btnEid">
+        <span class="choice-tag">UAE</span>
+        <span class="choice-title">Emirates ID</span>
+        <span class="choice-desc">ID number, card number, name, date of birth, sex, nationality, issue &amp; expiry, occupation, employer, place</span>
+        <span class="choice-go">Open scanner &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== EMIRATES ID (existing scanner, unchanged) ===== -->
+  <section id="view-eid" class="view" hidden>
+    <a class="back" href="#home">&larr; Back</a>
+
+
   <p class="eyebrow">ID scanner</p>
   <h1>Extract ID data<br>straight to Excel</h1>
   <p class="sub">Upload ID photos — one at a time, a whole batch at once, or a .zip full of scans. Each one is read on-device and every field on a UAE Emirates ID (name, ID number, date of birth, nationality, sex, issue and expiry dates, card number, occupation, employer, issuing place) lands in its own column, ready to download as one Excel file.</p>
@@ -50,9 +76,63 @@
     </div>
   </div>
 
+  </section>
+
+  <!-- ===== LABOUR CARD ===== -->
+  <section id="view-labour" class="view" hidden>
+    <a class="back" href="#home">&larr; Back</a>
+    <p class="eyebrow">Labour card scanner</p>
+    <h1>Extract labour card data<br>straight to Excel</h1>
+    <p class="sub">Upload labour card (work permit) photos — one at a time, a whole batch at once, or a .zip full of scans. Each one is read on-device and every field (name, expiry date, work permit no., personal no., profession, nationality, establishment) lands in its own column, ready to download as one Excel file.</p>
+
+    <div class="stage" id="lbStage">
+      <input type="file" id="lbFileInput" accept="image/*,.pdf,.zip" multiple>
+      <div class="stage-empty" id="lbStageEmpty">
+        <span class="ic">SELECT FILES</span>
+        <p>Click to upload, or drag files here</p>
+        <p class="hint">Select labour card images or PDFs, or a .zip of scans</p>
+        <div class="filetypes"><span>JPG</span><span>PNG</span><span>PDF</span><span>ZIP</span></div>
+      </div>
+      <div class="queue-view" id="lbQueue" style="display:none;">
+        <div class="queue-preview scanning">
+          <img id="lbQImg" alt="">
+          <div class="scanline"></div>
+        </div>
+        <div class="status-bar">
+          <div class="status-row"><span id="lbQText">Scanning…</span><span class="val" id="lbQPct">0%</span></div>
+          <div class="progress-track"><div class="progress-fill" id="lbQFill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="lbActions" style="display:none;">
+      <button id="lbCancelBtn">Stop scanning</button>
+    </div>
+
+    <div class="log-table-wrap">
+      <div class="log-head">
+        <h2>Scanned records</h2>
+        <span class="count" id="lbRowCount">0 records</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead id="lbLogHead"></thead>
+          <tbody id="lbLogBody"></tbody>
+        </table>
+      </div>
+      <div class="export-bar">
+        <span class="count" id="lbExportHint">Add at least one record to export.</span>
+        <button class="primary" id="lbExportBtn" disabled>Download Excel file</button>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script src="parser.js"></script>
 <script src="script.js"></script>
+<script src="labour-parser.js"></script>
+<script src="labour.js"></script>
+<script src="nav.js"></script>
 </body>
 </html>

@@ -33,6 +33,12 @@
         <span class="choice-desc">ID number, card number, name, date of birth, sex, nationality, issue &amp; expiry, occupation, employer, place</span>
         <span class="choice-go">Open scanner &rarr;</span>
       </a>
+      <a class="choice" href="#residence" id="btnResidence">
+        <span class="choice-tag">RESIDENCE</span>
+        <span class="choice-title">Residence Visa</span>
+        <span class="choice-desc">ID number, file, passport no., name, profession, employer, issue &amp; expiry date, place of issue</span>
+        <span class="choice-go">Open scanner &rarr;</span>
+      </a>
     </div>
   </section>
 
@@ -127,12 +133,63 @@
     </div>
   </section>
 
+  <!-- ===== RESIDENCE VISA ===== -->
+  <section id="view-residence" class="view" hidden>
+    <a class="back" href="#home">&larr; Back</a>
+    <p class="eyebrow">Residence visa scanner</p>
+    <h1>Extract residence card data<br>straight to Excel</h1>
+    <p class="sub">Upload UAE residence (visa) card photos — one at a time, a whole batch at once, or a .zip full of scans. Each one is read on-device and every field (ID number, file, passport no., name, profession, employer, issue date, expiry date, place of issue) lands in its own column, ready to download as one Excel file.</p>
+
+    <div class="stage" id="rsStage">
+      <input type="file" id="rsFileInput" accept="image/*,.pdf,.zip" multiple>
+      <div class="stage-empty" id="rsStageEmpty">
+        <span class="ic">SELECT FILES</span>
+        <p>Click to upload, or drag files here</p>
+        <p class="hint">Select residence card images or PDFs, or a .zip of scans</p>
+        <div class="filetypes"><span>JPG</span><span>PNG</span><span>PDF</span><span>ZIP</span></div>
+      </div>
+      <div class="queue-view" id="rsQueue" style="display:none;">
+        <div class="queue-preview scanning">
+          <img id="rsQImg" alt="">
+          <div class="scanline"></div>
+        </div>
+        <div class="status-bar">
+          <div class="status-row"><span id="rsQText">Scanning…</span><span class="val" id="rsQPct">0%</span></div>
+          <div class="progress-track"><div class="progress-fill" id="rsQFill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" id="rsActions" style="display:none;">
+      <button id="rsCancelBtn">Stop scanning</button>
+    </div>
+
+    <div class="log-table-wrap">
+      <div class="log-head">
+        <h2>Scanned records</h2>
+        <span class="count" id="rsRowCount">0 records</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead id="rsLogHead"></thead>
+          <tbody id="rsLogBody"></tbody>
+        </table>
+      </div>
+      <div class="export-bar">
+        <span class="count" id="rsExportHint">Add at least one record to export.</span>
+        <button class="primary" id="rsExportBtn" disabled>Download Excel file</button>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script src="parser.js"></script>
 <script src="script.js"></script>
 <script src="labour-parser.js"></script>
 <script src="labour.js"></script>
+<script src="residence-parser.js"></script>
+<script src="residence.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>
